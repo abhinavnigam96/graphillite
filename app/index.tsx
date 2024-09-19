@@ -4,8 +4,10 @@ import { Canvas } from "@react-three/fiber/native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Suspense } from 'react';
 import { Starlink } from '@/components/Starlink';
+import useControls from 'r3f-native-orbitcontrols';
 
 export default function index() {
+  const [OrbitControls, event] = useControls();
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar animated barStyle={"light-content"} />
@@ -13,14 +15,15 @@ export default function index() {
         <Text style={styles.textTitle}>Paired Successfully</Text>
         <Text style={styles.text}>Connected to that tiny dot you might see in the sky when its dark and you have no light pollution in your vicinity</Text>
       </View>
-      <View style={styles.modelContainer}>
+      <View style={styles.modelContainer} {...event}>
         <Canvas>
-          <directionalLight position={[1, 0, 0]} args={["white", 2]} />
-          <directionalLight position={[-1, 0, 0]} args={["white", 2]} />
-          <directionalLight position={[0, 0, 1]} args={["white", 2]} />
-          <directionalLight position={[0, 0, -1]} args={["white", 2]} />
-          <directionalLight position={[0, 1, 0]} args={["white", 16]} />
-          <directionalLight position={[0, -1, 0]} args={["white", 2]} />
+          <OrbitControls enablePan={false} enableZoom={false} />
+          <directionalLight position={[1, 0, 0]} args={["red", 2]} />
+          <directionalLight position={[-1, 0, 0]} args={["red", 2]} />
+          <directionalLight position={[0, 0, 1]} args={["red", 2]} />
+          <directionalLight position={[0, 0, -1]} args={["red", 2]} />
+          <directionalLight position={[0, 1, 0]} args={["red", 16]} />
+          <directionalLight position={[0, -1, 0]} args={["red", 2]} />
           <Suspense>
             <Starlink />
           </Suspense>

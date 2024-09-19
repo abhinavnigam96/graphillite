@@ -29,7 +29,7 @@ export function Starlink(props: JSX.IntrinsicElements['group']) {
     const { nodes, materials, animations } = useGLTF(require('../assets/models/Starlink.glb')) as GLTFResult
     const { actions } = useAnimations(animations, group)
     return (
-        <group ref={group} {...props} dispose={null}>
+        <group ref={group} {...props} dispose={null} position={[0, -0.5, 0]}>
             <group name="Scene">
                 <mesh
                     name="01_objects002"
